@@ -1,0 +1,14 @@
+.page-item.active{
+    background-color: green;
+    color:green;
+}
+.page-item.active a{
+    background-color: green !important;
+}
+.update:hover,.dele:hover{
+    background-color: red;
+   
+}
+.update:hover a,.dele:hover a{
+    color:#fff !important;
+}

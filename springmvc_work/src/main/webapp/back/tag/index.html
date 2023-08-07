@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../statics/css/bootstrap.min.css">
+    <title>标签列表</title>
+    <script src="../../js/axios-0.21.0.js"></script>
+    <script src="../../js/vue-2.6.12.js"></script>
+</head>
+<body>
+<div class="container-fluid" id="root">
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="button" value="添加标签" class="btn btn-sm btn-info" onclick="location.href='./add.html'"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px; ">
+        <div class="col-sm-12">
+            <table class="table table-hover table-bordered table-striped">
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>创建时间</th>
+                    <th>标签类型</th>
+                    <th>操作</th>
+                </tr>
+                <tr v-for="tag in tags">
+                    <td>{{tag.id}}</td>
+                    <td>{{tag.name}}</td>
+                    <td>{{tag.createDate}}</td>
+                    <td>
+                        <span v-if="tag.type=='学生'">
+                        <span class="label label-warning">{{tag.type}}</span>
+                        </span>
+                        <span v-if="tag.type=='班级'">
+                             <span class="label label-info">{{tag.type}}</span>
+                        </span>
+                    </td>
+                    <td><a href="" class="btn btn-danger btn-sm"@click="deleteById(tag.id)">删除</a></td>
+                </tr>
+<!--                <tr>-->
+<!--                    <td>2</td>-->
+<!--                    <td>非常不错的班</td>-->
+<!--                    <td>2021-12-12</td>-->
+<!--                    <td>-->
+<!--                        <span class="label label-info">班级</span>-->
+<!--                    </td>-->
+<!--                    <td><a href="" class="btn btn-danger btn-sm">删除</a></td>-->
+<!--                </tr>-->
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            tags:[],
+        },
+        methods:{
+            deleteById(id) {
+                axios.post("/springmvc_work/tag/deleteById?id="+id).then(
+                    res=>{
+                        alert("删除成功")
+                        location.reload();
+                    }
+                ).catch(
+                    err=>console.log(err)
+                )
+            }
+        },
+        created(){
+            axios.get("/springmvc_work/tag/queryAll").then(
+                res=>this.tags=res.data
+            ).catch(
+                err=>console.log(err)
+            )
+        }
+    })
+</script>
+
+</body>
+</html>

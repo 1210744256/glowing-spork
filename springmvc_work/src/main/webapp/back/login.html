@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>index.html</title>
+
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=GBK">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./statics/css/bootstrap.min.css">
+    <script src="../js/axios-0.21.0.js"></script>
+    <script src="../js/vue-2.6.12.js"></script>
+</head>
+
+<body>
+<div class="container-fluid" id="root">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">用户登录</h1>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form action="./main/main.html" method="post">
+                <div class="form-group">
+                    <label>用户名:</label>
+                    <input type="text" class="form-control" name="" v-model="user.username">
+                </div>
+                <div class="form-group">
+                    <label >密&nbsp;&nbsp;码:</label>
+                    <input type="text" name="" class="form-control" v-model="user.password">
+                </div>
+                <div class="form-group">
+                    <label >验证码:</label>
+                    <div>
+                        <input type="text" name="" v-model="captchaData" class="form-control" style="width: 70%;height:40px;float: left">
+                        <img :src="captchaSrc" style="float: right;height: 50px;" @click="flushCaptcha"/>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div style="margin-top: 10px;">
+                    <input class="btn btn-success btn-block" type="button"value="登录" @click="login1()"/>
+                    <input class="btn btn-info btn-block" type="button" value="还没有账号,点我去注册" @click="regist()"/>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            user:{},
+            captchaSrc:'/springmvc_work/user/captcha',
+            captchaData:'',
+        },
+        methods:{
+            //刷新验证码
+            flushCaptcha(){
+                this.captchaSrc=`/springmvc_work/user/captcha?da=${Math.random()}`
+            },
+            login1(){
+                axios.post("/springmvc_work/user/login?captcha="+this.captchaData,this.user).then(
+                    res=>{
+                        alert(res.data.message);
+                        if(res.data.message=="success"){
+                            localStorage.setItem("user",JSON.stringify(res.data.user))
+                            location.href="main/main.html"
+                        }
+                    }
+                ).catch(
+                    err=>console.log(err)
+                )
+            },
+            regist(){
+                location.href="regist.html";
+            }
+        },
+    })
+</script>
+</html>

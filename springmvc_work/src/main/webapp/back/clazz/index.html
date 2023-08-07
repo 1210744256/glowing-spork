@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>班级列表</title>
+    <link rel="stylesheet" type="text/css" href="../statics/css/bootstrap.min.css">
+    <script src="../../js/axios-0.21.0.js"></script>
+    <script src="../../js/vue-2.6.12.js"></script>
+</head>
+<body>
+<div class="container-fluid" id="root">
+    <div class="row">
+        <div class="col-sm-12" style="margin:20px 0px; ">
+            <input type="button" value="添加班级" class="btn btn-sm btn-info" onclick="location.href='./add.html'"/>
+        </div>
+        <div class="col-sm-12">
+            <div class="row" >
+                    <div class="col-sm-2"v-for="c in clazzes">
+                        <div class="thumbnail">
+                            <img style="width: 220px;height: 220px;" :src="'/springmvc_work/'+c.path">
+                            <div class="caption">
+                                <h4>{{c.name}}</h4>
+                                <p><span class="label label-info">{{c.tag.name}}</span></p>
+                                <p><a href="#" class="btn btn-danger btn-sm btn-block" role="button" @click="deleteById(c.id,c.path)">删除班级</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            clazzes:[],
+        },
+        methods:{
+            deleteById(id,path){
+                // alert(path)
+                axios.post("/springmvc_work/clazz/deleteById?id="+id+"&path="+path).then(
+                    res=>{
+                        alert("删除成功");
+                        location.reload();
+                    }
+                ).catch(
+                    err=>console.log(err)
+                )
+            }
+        },
+        created(){
+            axios.post("/springmvc_work/clazz/queryAll").then(
+                res=>this.clazzes=res.data
+            ).catch(
+                err=>console.log(err)
+            )
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+
+.banner .carousel-inner img{
+    height: 368px;
+}
+.carousel-indicators{
+    width: 50px;
+    height: 20px;
+    border-radius:20px;
+}
+ .carousel-indicators  .zdy-circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.well-received-list .cart-item{
+    width: 22%;
+}
+.well-received-list .cart-item .cart-item-body{
+    margin-top: -28px;
+    height: 28px; 
+}
+.well-received-list .cart-item .to-buy{
+    cursor: pointer;
+}
+.well-received-list .cart-item .to-buy:hover{
+    background-color: red;
+    color:#fff !important;
+}
+.well-received-list .cart-item .to-buy:hover a{
+    color:#fff !important;
+}
+.Rating-ranking-title{
+    height: 30px;
+    line-height: 30px;
+}
+.Rating-ranking-list .shelf-time{
+    font-size: 12px;
+}

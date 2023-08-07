@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UserDao">
+    <insert id="insert" parameterType="com.baizhi.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user(username,password,photopath,createDate,role)
+        values (#{username},#{password},#{photopath},#{createDate},#{role})
+    </insert>
+    <select id="select" resultType="com.baizhi.entity.User" parameterType="com.baizhi.entity.User">
+        select id,username,password,photopath,createDate,role from t_user
+        <where>
+            <if test="id!=null">
+                id=#{id}
+            </if>
+            <if test="username!=null and !username.isEmpty()">
+                and username=#{username}
+            </if>
+        </where>
+    </select>
+</mapper>

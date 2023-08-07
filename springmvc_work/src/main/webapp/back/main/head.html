@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <link rel="stylesheet" type="text/css" href="../statics/css/bootstrap.min.css">
+    <script src="../../js/axios-0.21.0.js"></script>
+    <script src="../../js/vue-2.6.12.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" id="root">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">百知教务系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">欢迎
+                    <span v-if="user.username!=''">{{user.username}}</span>
+                </a></li>
+
+                <li><a href="#" @click="esc()">退出系统</a></li>
+                <li><a href="../login.html" target="_parent">点我登录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            user:{}
+        },
+        methods:{
+            esc(){
+                localStorage.clear();
+                axios.post("/springmvc_work/user/esc").then(
+                    res=>{
+                        alert("退出成功");
+sh                    }
+                )
+            }
+        },
+        created(){
+            this.user=JSON.parse(localStorage.getItem("user"));
+        }
+    })
+</script>
+</html>

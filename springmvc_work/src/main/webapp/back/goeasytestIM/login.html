@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>聊天登录框</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    table{
+        border: 1px solid black;
+        margin :200px auto;
+        
+    }
+    tr,td{
+        border: 1px solid black;
+        padding: 10px;
+ 
+    }
+    .but{
+        text-align: center;
+    }
+    
+</style>
+
+<body>
+    <div class="denglu">
+        <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" placeholder="输入使用昵称" id="talkwords1"></td>
+            </tr>
+            <tr>
+                <td>聊天室：</td>
+                <td>
+                    <select>
+                        <option value="0" selected = "selected">2302班聊天室</option>
+                        <option value="0">暂未开放其他房间</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="but"><button id="but">加入聊天</button></td>
+            </tr>
+        </table>
+ 
+    </div>
+    
+</body>
+</html>
+
+<script>
+	var but=document.getElementById("but");/* 获取按钮 */
+	var talkWords1 = document.getElementById("talkwords1");/* 获取输入框 */
+
+	/* 判断是否用户名非法 */
+	but.onclick=function(){
+		if(talkWords1.value == ""){
+             // 消息为空时弹窗
+            alert("用户名不能为空");
+            return;
+		}
+		var url=encodeURI("./talk.html?username="+talkWords1.value)/* 向聊天框html传参 */
+		window.location.href=url
+	}
+</script>

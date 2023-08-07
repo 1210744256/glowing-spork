@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>index.html</title>
+
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=GBK">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./statics/css/bootstrap.min.css">
+    <script src="../js/axios-0.21.0.js"></script>
+    <script src="../js/vue-2.6.12.js"></script>
+</head>
+
+<body>
+<div id="root">
+
+
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 150px;">
+            <div class="col-sm-6">
+                <div id="clazzChart" style="width: 600px;height:400px;"></div>
+            </div>
+            <div class="col-sm-6">
+                <div id="tagType" style="width: 600px;height:400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="./statics/js/echarts.min.js"></script>
+<script src="./statics/js/jquery-1.8.3.min.js"></script>
+<script src="../js/goeasy-2.6.6.min.js"></script>
+<script>
+    new Vue({
+        el: '#root',
+        data: {},
+        methods: {},
+        created() {
+            axios.post("/springmvc_work/clazz/clazzExcel").then(
+                res => {
+                    // alert(res.data)
+                    if (res.data == "请先登录") {
+                        alert("请你先登录")
+                        window.parent.location.href = "login.html"
+                    }
+                    console.log(res.data.clazzNames);
+                    console.log(res.data.clazzStudentCounts);
+                    var clazzChart = echarts.init(document.getElementById('clazzChart'), 'light');
+                    var option = {
+                        title: {
+                            text: '各班级学生数量'
+                        },
+                        tooltip: {},
+                        legend: {
+                            data: ['学生数量']
+                        },
+                        xAxis: {
+                            data: res.data.clazzNames
+                            //data:[]
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '学生数量',
+                            type: 'bar',
+                            data: res.data.clazzStudentCounts
+                            //data:[]
+                        }],
+                    };
+                    clazzChart.setOption(option);
+                    clazzChart.showLoading();
+                    //$.get('${pageContext.request.contextPath}/getClazz').done(function (data) {
+                    clazzChart.hideLoading();
+
+                }
+            )
+            axios.post("/springmvc_work/tag/queryEchas").then(
+                res => {
+                    var tagType = echarts.init(document.getElementById('tagType'), 'light');
+                    tagType.setOption({
+                        title: {
+                            text: '标签类型占比'
+                        },
+                        tooltip: {},
+                        series: [
+                            {
+                                name: '标签类型占比',
+                                type: 'pie',
+                                radius: '70%',
+                                data: res.data,
+                                // data: [
+                                //     {value: 235, name: '班级标签'},
+                                //     {value: 274, name: '学生标签'},
+                                // ]
+                            }
+                        ]
+                    })
+                    // tagType.setOption(option);
+                    tagType.showLoading();
+                    //$.get('${pageContext.request.contextPath}/getClazz').done(function (data) {
+                    tagType.hideLoading();
+                }
+            )
+
+        }
+    })
+
+    let goeasy = GoEasy.getInstance({
+        host: "hangzhou.goeasy.io",  //若是新加坡区域：singapore.goeasy.io
+        appkey: "BC-3618fc7f5fb940568c6727366eec1bb1",
+        modules: ['pubsub']//根据需要，传入‘pubsub’或'im’，或数组方式同时传入
+    });
+    goeasy.connect({
+        onSuccess: function () {  //连接成功
+            console.log("GoEasy connect successfully.") //连接成功
+        },
+        onFailed: function (error) { //连接失败
+            console.log("Failed to connect GoEasy, code:" + error.code + ",error:" + error.content);
+        },
+        onProgress: function (attempts) { //连接或自动重连中
+            console.log("GoEasy is connecting", attempts);
+        }
+    });
+    var pubsub = goeasy.pubsub;
+    pubsub.subscribe({
+        channel: "student_channel",//替换为您自己的channel
+        onMessage: function (message) {
+            //收到消息
+            const ressult = JSON.parse(message.content);
+            // console.log("Channel:" + message.channel + " content:" + message.content);
+            var clazzChart = echarts.init(document.getElementById('clazzChart'), 'light');
+            var option = {
+                title: {
+                    text: '各班级学生数量'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['学生数量']
+                },
+                xAxis: {
+                    data: ressult.clazzNames
+                    //data:[]
+                },
+                yAxis: {},
+                series: [{
+                    name: '学生数量',
+                    type: 'bar',
+                    data: ressult.clazzStudentCounts
+                    //data:[]
+                }],
+            };
+            clazzChart.setOption(option);
+            clazzChart.showLoading();
+            //$.get('${pageContext.request.contextPath}/getClazz').done(function (data) {
+            clazzChart.hideLoading();
+        },
+        onSuccess: function () {
+            console.log("Channel订阅成功。");
+        },
+        onFailed: function (error) {
+            console.log("Channel订阅失败, 错误编码：" + error.code + " 错误信息：" + error.content)
+        }
+    });
+    var pubsub2 = goeasy.pubsub;
+    pubsub2.subscribe({
+        channel: "tag_channel",//替换为您自己的channel
+        onMessage: function (message) {
+            //收到消息
+            console.log("Channel:" + message.channel + " content:" + message.content);
+            var tagType = echarts.init(document.getElementById('tagType'), 'light');
+            const result = JSON.parse(message.content)
+            tagType.setOption({
+                title: {
+                    text: '标签类型占比'
+                },
+                tooltip: {},
+                series: [
+                    {
+                        name: '标签类型占比',
+                        type: 'pie',
+                        radius: '70%',
+                        data: result,
+                        // data: [
+                        //     {value: 235, name: '班级标签'},
+                        //     {value: 274, name: '学生标签'},
+                        // ]
+                    }
+                ]
+            })
+            // tagType.setOption(option);
+            tagType.showLoading();
+            //$.get('${pageContext.request.contextPath}/getClazz').done(function (data) {
+            tagType.hideLoading();
+        },
+        onSuccess: function () {
+            console.log("Channel订阅成功。");
+        },
+        onFailed: function (error) {
+            console.log("Channel订阅失败, 错误编码：" + error.code + " 错误信息：" + error.content)
+        }
+    });
+
+</script>

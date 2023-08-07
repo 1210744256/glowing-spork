@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小组列表</title>
+    <link rel="stylesheet" type="text/css" href="../statics/css/bootstrap.min.css">
+    <script src="../../js/axios-0.21.0.js"></script>
+    <script src="../../js/vue-2.6.12.js"></script>
+</head>
+<body>
+<div class="container-fluid" id="root">
+    <div class="row">
+        <div class="col-sm-12" style="margin-bottom: 10px; ">
+            <input type="button" value="添加小组" class="btn btn-sm btn-info" onclick="location.href='./add.html'"/>
+        </div>
+        <div class="col-sm-12">
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>编号</th>
+                    <th>组名称</th>
+                    <th>班级名称</th>
+                    <th>创建时间</th>
+                    <th>小组标签</th>
+                    <th>人数</th>
+                    <th>操作</th>
+                </tr>
+                <tr v-for="g in groups">
+                    <td>{{g.id}}</td>
+                    <td>{{g.name}}</td>
+                    <td>{{g.clazz.name}}</td>
+                    <td>{{g.createDate}}</td>
+                    <td><span v-for="tag in g.tags">{{tag.name}}&nbsp;&nbsp;</span></td>
+                    <td>{{g.studentCount}}</td>
+                    <td><button  class="btn btn-danger " @click="deleteById(g.id)">删除</button></td>
+                </tr>
+                <!--				<tr>-->
+                <!--					<td>2</td>-->
+                <!--					<td>2组</td>-->
+                <!--					<td>2010班</td>-->
+                <!--					<td>2021-04-05</td>-->
+                <!--					<td>帅哥</td>-->
+                <!--					<td>5</td>-->
+                <!--					<td><a href="" class="btn btn-danger btn-sm">删除</a></td>-->
+                <!--				</tr>-->
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            groups: [],
+        },
+        methods: {
+            deleteById(id) {
+                axios.post("/springmvc_work/group/delete?id=" + id).then(
+                    res => {
+                        alert("删除成功")
+                        location.reload();
+                    }
+                ).catch(
+
+                )
+            }
+        },
+        created() {
+            let pathName = window.document.location.pathname;
+            // alert(pathName)
+
+            // 法二：不用截取
+            let projectPath = window.location.pathname + location.search;
+            axios.post("/springmvc_work/group/queryAll").then(
+                res => {
+                    this.groups = res.data;
+                    // console.log(res.data[0].clazz);
+                    // console.log(this.groups.length)
+                    for (let i = 0; i < this.groups.length; i++) {
+                            axios.post("/springmvc_work/clazz/queryId?id="+this.groups[i].clazz.id).then(
+                                res=>{
+                                    this.groups[i].clazz=res.data;
+                                    // console.log(this.groups[i].clazz)
+                                    // alert(i)
+                                }
+                            )
+                        // this.groups[i].clazz = JSON.parse(a);
+                        // alert(this.groups[i].clazz.name)
+                    }
+                }
+            ).catch(
+                err => console.log(err)
+            )
+
+
+        }
+    })
+</script>
+</html>

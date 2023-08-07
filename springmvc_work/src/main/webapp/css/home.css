@@ -1,0 +1,14 @@
+#pageCount,input,button{
+    font-size: 12px;
+}
+.pagination-container{
+    height: 50px;
+    font-size: 12px;
+}
+.page-item.active{
+    background-color: green;
+    color:green;
+}
+.page-item.active a{
+    background-color: green !important;
+}

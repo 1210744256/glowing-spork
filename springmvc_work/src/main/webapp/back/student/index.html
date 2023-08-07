@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学生列表</title>
+    <link rel="stylesheet" type="text/css" href="../statics/css/bootstrap.min.css">
+    <style>
+        .form-control {
+            height: 30px;
+        }
+
+        .pagination {
+            margin-top: 0px;
+        }
+    </style>
+    <script src="../../js/axios-0.21.0.js"></script>
+    <script src="../../js/vue-2.6.12.js"></script>
+</head>
+<body>
+<div class="container-fluid" id="root">
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center">
+            <form class="form-inline" action="" method="post">
+                <div class="form-group">
+                    <label>请选择:</label>
+                    <select class="form-control" style="height: 30px; width: 100px;" name="colName" v-model="colName">
+                        <option value="name">姓名</option>
+                        <option value="phone">手机</option>
+                        <option value="qq">QQ</option>
+                    </select>
+                    <input type="text" class="form-control" v-model="colNameData" name="colValue"
+                           style="height: 30px; width: 300px;">
+                </div>
+
+                <button type="button" class="btn btn-primary" @click="search()">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px;height: 300px">
+<!--        <c:if test="${sessionScope.user.role=='admin'}">-->
+            <div class="col-sm-12" style="margin-bottom: 10px;">
+                <a href="add.html" class="btn btn-sm btn-success">添加学生信息</a>
+            </div>
+<!--        </c:if>-->
+        <div class="col-sm-12">
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>年龄</th>
+                    <th>生日</th>
+                    <th>生肖</th>
+                    <th>星座</th>
+                    <th>班级</th>
+                    <th>小组</th>
+                    <th>就业城市</th>
+                    <th>标签</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tr v-for="s in students">
+                    <td>{{s.name}}</td>
+                    <td>{{s.phone}}</td>
+                    <td>{{s.age}}</td>
+                    <td>{{s.bir}}</td>
+                    <td>{{s.starts}}</td>
+                    <td>{{s.attr}}</td>
+                    <td>{{s.clazz.name}}</td>
+                    <td>{{s.group.name}}</td>
+                    <td>{{s.city.name}}</td>
+                    <td>
+                        <span v-for="tag in s.tags">{{tag.name}}&nbsp;&nbsp;</span>
+                    </td>
+                    <td>
+                        <button href="update.html" class="btn btn-warning" @click="updateStudent(s.id)">修改</button>
+                        <button class="btn btn-danger " @click="deleteById(s.id)">删除</button>
+                    </td>
+                </tr>
+                <!--                        <tr>-->
+                <!--                            <td>张三</td>-->
+                <!--                            <td>13260426185</td>-->
+                <!--                            <td>23</td>-->
+                <!--                            <td>2012/12/12</td>-->
+                <!--                            <td>马</td>-->
+                <!--                            <td>射手座</td>-->
+                <!--                            <td>2010班</td>-->
+                <!--                            <td>2组</td>-->
+                <!--                            <td>北京</td>-->
+                <!--                            <td>-->
+                <!--                                帅哥、学渣-->
+                <!--                            </td>-->
+                <!--                            <td>-->
+                <!--                                <a href="update.html" class="btn btn-warning btn-sm">修改</a>-->
+                <!--                                <a href="" class="btn btn-danger btn-sm">删除</a>-->
+                <!--                            </td>-->
+                <!--                        </tr>-->
+            </table>
+        </div>
+    </div>
+
+<!--    <c:if test="${requestScope.total!=0}">-->
+        <div class="row">
+            <div class="col-sm-8">
+                <a href="/springmvc_work/student/down"
+                   class="btn btn-info">下载学生信息到文件中</a>
+            </div>
+            <div class="col-sm-4">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li v-if="page!=1">
+                            <a href="#"
+                               aria-label="Previous" @click="updatePage(page-1)">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li v-if="page==1">
+                            <a href="#"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li v-for="page in totalPage">
+                            <a href="#" @click="updatePage(page)">{{page}}</a>
+                        </li>
+
+                        <li v-if="page!=totalPage">
+                            <a href="#"
+                               aria-label="Next" @click="updatePage(page+1)">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li v-if="page==totalPage">
+                            <a href="#"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+<!--    </c:if>-->
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            students: [],
+            page: 1,
+            size: 2,
+            student: {},
+            totalPage: 0,
+            colName: "",
+            colNameData: '',
+        },
+        methods: {
+            downStudent(){
+              axios.post("/springmvc_work/student/down").then(
+                  res=>alert("下载成功")
+              ).catch(err=>alert("下载失败"))
+            },
+            updateStudent(id) {
+                alert(id)
+                localStorage.setItem("id", id);
+                location.href = "update.html";
+            },
+            deleteById(id) {
+                axios.post("/springmvc_work/student/delete?id=" + id).then(
+                    res => {
+                        alert("成功")
+                        location.reload();
+                    }
+                ).catch(
+                    err => console.log(err)
+                )
+            },
+            updatePage(page) {
+                this.page = page;
+                axios.post(`/springmvc_work/student/selectLimit?page=${this.page}&size=${this.size}`, this.student)
+                    .then(res => {
+                        this.students = res.data.students
+                        this.totalPage = parseInt(res.data.totalPage)
+                        // alert("总页数为"+this.totalPage)
+                    }).catch(
+                    err => console.log(err))
+            },
+            search() {
+                // alert(this.colName)
+                let colName = this.colName
+                const student={};
+                //
+               student[colName] = this.colNameData;
+               this.student=student;
+               console.log(student)
+                axios.post(`/springmvc_work/student/selectLimit?page=${this.page}&size=${this.size}`,student)
+                    .then(res => {
+                        this.students = res.data.students
+                        this.totalPage = parseInt(res.data.totalPage)
+                    }).catch(
+                    err => console.log(err))
+                // if(this.colName=='phone')
+                // console.log(student);
+            }
+        },
+        created() {
+            axios.post(`/springmvc_work/student/selectLimit?page=${this.page}&size=${this.size}`, this.student)
+                .then(res => {
+                    // alert(res.data)
+                    if(res.data=="请先登录")window.parent.location.href="../login.html"
+                    this.students = res.data.students
+                    this.totalPage = parseInt(res.data.totalPage)
+                }).catch(
+                err => console.log(err)
+            )
+        }
+    })
+</script>

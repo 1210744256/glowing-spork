@@ -1,0 +1,15 @@
+.search::-webkit-input-placeholder{
+    color:#000;
+    font-size: 12px;
+    opacity: 0.5;
+}
+input{
+    outline: 0;
+    font-size: 12px;
+}
+.avatar:hover a{
+    display: block !important;
+    z-index: 100;
+    color:#fff;
+    cursor: pointer;
+}
