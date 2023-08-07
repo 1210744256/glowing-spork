@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  样式-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/element-ui@2.15.13_lib_index.js"></script>
+</head>
+<body>
+    <div id="root">
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+            <el-menu-item index="main.html">首页</el-menu-item>
+            <el-menu-item index="user.html" >用户</el-menu-item>
+            <el-menu-item index="main.html" >消息中心</el-menu-item>
+            <el-menu-item index="user.html"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+        </el-menu>
+        <iframe :src="src" frameborder="0" height="600px" width="100%"></iframe>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            activeIndex: '1',
+            src:"main.html"
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+
+                console.log(key, keyPath);
+                this.src=key;
+            }
+        }
+    })
+</script>
+</html>

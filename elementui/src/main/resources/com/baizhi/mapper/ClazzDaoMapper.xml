@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ClazzDao">
+    <resultMap id="all" type="Clazz">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="path" property="path"></result>
+        <association property="tag" javaType="Tag">
+            <id column="tid" property="id"></id>
+            <result column="tname" property="name"></result>
+            <result column="type" property="type"></result>
+        </association>
+    </resultMap>
+    <insert id="insert" parameterType="Clazz">
+        insert into t_clazz(name, path, tagId)
+        values (#{name}, #{path}, #{tag.id})
+    </insert>
+    <delete id="deleteById" parameterType="int">
+        delete
+        from t_clazz
+        where id = #{id}
+    </delete>
+    <delete id="deleteRelation" parameterType="int">
+        delete
+        from t_student_tag
+        where tid = #{id}
+    </delete>
+    <select id="queryAll" resultMap="all">
+        select c.id, c.name, c.path,t.id tid, t.name tname,t.type
+        from t_clazz c
+                 left join t_tag t on c.tagId = t.id
+    </select>
+    <select id="queryById" resultMap="all" parameterType="int">
+        select c.id, c.name, c.path, t.id tid, t.name tname,t.type
+        from t_clazz c
+                 left join t_tag t on c.tagId = t.id
+        where c.id = #{id}
+    </select>
+    <select id="queryAllCount" resultType="com.baizhi.dto.ClazzResponse">
+        select c.id, c.name,count(*) clazzStudentCount from t_clazz c left join t_student s on c.id=s.clazzId group by c.id
+    </select>
+</mapper>

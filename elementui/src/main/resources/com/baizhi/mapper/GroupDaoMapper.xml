@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.GroupDao">
+    <resultMap id="all" type="Group">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="createDate" property="createDate"></result>
+        <association property="clazz" javaType="Clazz">
+            <id column="cid" property="id"></id>
+            <result column="cname" property="name"></result>
+            <result column="cpath" property="path"></result>
+        </association>
+    </resultMap>
+    <resultMap id="all1" type="Group">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="createDate" property="createDate"></result>
+        <association property="clazz" javaType="Clazz">
+            <id column="cid" property="id"></id>
+            <result column="cname" property="name"></result>
+            <result column="cpath" property="path"></result>
+        </association>
+    </resultMap>
+    <insert id="insert" parameterType="Group">
+        insert into t_group(name,createDate,clazzId)
+        values (#{name},#{createDate},#{clazz.id})
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete from t_group where id=#{id}
+    </delete>
+    <select id="queryAll" resultMap="all" >
+        select g.id, g.name, g.createDate,c.id cid,c.name cname,c.path cpath
+        from t_group g
+                 left join t_clazz c
+        on g.clazzid=c.id
+    </select>
+    <select id="queryById" resultMap="all1" parameterType="int">
+        select g.id, g.name, g.createDate,c.id cid,c.name cname,c.path cpath
+        from t_group g
+                 left join t_clazz c
+                           on g.clazzid=c.id
+        where g.id=#{id}
+    </select>
+</mapper>
