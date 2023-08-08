@@ -26,8 +26,14 @@ public class Result {
         setSuccess(false);
         return this;
     }
-    public Result error(String msg){
+    public Result error(Object data){
         setSuccess(false);
+        setData(data);
+        return this;
+    }
+    public Result error(Object data,String msg){
+        setSuccess(false);
+        setData(data);
         setMsg(msg);
         return this;
     }

@@ -10,20 +10,6 @@
    <mvc:default-servlet-handler></mvc:default-servlet-handler>
 <!--    文件上传解析器-->
     <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"></bean>
-<!--    设置拦截器-->
-    <bean class="com.baizhi.interceptor.MyInterceptor" id="myInterceptor"></bean>
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/city/**"/>
-            <mvc:mapping path="/clazz/**"/>
-            <mvc:mapping path="/student/**"/>
-            <mvc:mapping path="/group/**"/>
-            <mvc:mapping path="/tag/**"/>
-            <mvc:exclude-mapping path="/user/**"/>
-<!--            <mvc:exclude-mapping path="/back/**"/>-->
-            <ref bean="myInterceptor"></ref>
-        </mvc:interceptor>
-    </mvc:interceptors>
 <!--&lt;!&ndash;    设置拦截器&ndash;&gt;-->
 <!--    <bean class="com.baizhi.interceptor.MyInterceptor" id="myInterceptor"></bean>-->
 <!--&lt;!&ndash;    配置mvc拦截器&ndash;&gt;-->
@@ -35,4 +21,5 @@
 <!--            <ref bean="myInterceptor"></ref>-->
 <!--        </mvc:interceptor>-->
 <!--    </mvc:interceptors>-->
+    <mvc:annotation-driven></mvc:annotation-driven>
 </beans>

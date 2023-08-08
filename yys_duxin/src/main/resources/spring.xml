@@ -9,7 +9,7 @@
 <!--    数据源对象-->
     <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://192.168.228.133:3306/baizhi_work?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=GMT"></property>
+        <property name="url" value="jdbc:mysql://192.168.228.133:3306/baizhi_mid?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=GMT"></property>
         <property name="username" value="root"></property>
         <property name="password" value="duxin521"></property>
     </bean>
