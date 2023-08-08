@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88a5ab74-6929-48da-861f-e6414c2a9b69" name="Changes" comment="" />
+    <list default="true" id="88a5ab74-6929-48da-861f-e6414c2a9b69" name="Changes" comment="第一天的狱友社">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys_duxin/.gitignore" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,6 +86,11 @@
     "project.structure.side.proportion": "0.43908045",
     "settings.editor.selected.configurable": "build.tools",
     "spring.configuration.checksum": "6e5225dd6821b40d3946eb690ac51668"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -248,7 +257,7 @@
       <option name="presentableId" value="Default" />
       <updated>1691459401804</updated>
       <workItem from="1691459403285" duration="2447000" />
-      <workItem from="1691462492657" duration="12643000" />
+      <workItem from="1691462492657" duration="14562000" />
     </task>
     <task id="LOCAL-00001" summary="yys环境">
       <created>1691461571821</created>
@@ -264,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691486391965</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="第一天的狱友社">
+      <created>1691486837554</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691486837554</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
