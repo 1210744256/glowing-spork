@@ -9,17 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88a5ab74-6929-48da-861f-e6414c2a9b69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dto/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dto/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/resources/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/resources/springmvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/springmvc.xml" afterDir="false" />
-    </list>
+    <list default="true" id="88a5ab74-6929-48da-861f-e6414c2a9b69" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -258,7 +248,7 @@
       <option name="presentableId" value="Default" />
       <updated>1691459401804</updated>
       <workItem from="1691459403285" duration="2447000" />
-      <workItem from="1691462492657" duration="12252000" />
+      <workItem from="1691462492657" duration="12643000" />
     </task>
     <task id="LOCAL-00001" summary="yys环境">
       <created>1691461571821</created>
@@ -267,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691461571821</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="第一天的狱友社">
+      <created>1691486391965</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691486391965</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,7 +295,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="yys环境" />
-    <option name="LAST_COMMIT_MESSAGE" value="yys环境" />
+    <MESSAGE value="第一天的狱友社" />
+    <option name="LAST_COMMIT_MESSAGE" value="第一天的狱友社" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
