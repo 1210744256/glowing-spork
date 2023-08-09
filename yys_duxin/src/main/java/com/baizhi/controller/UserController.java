@@ -1,11 +1,14 @@
 package com.baizhi.controller;
 
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baizhi.dao.UserDao;
 import com.baizhi.dto.Result;
+import com.baizhi.dto.UserRequest;
 import com.baizhi.dto.UserResponse;
 import com.baizhi.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,11 +34,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    private Result login(@RequestBody UserResponse userResponse, HttpServletRequest request) {
+    private Result login(@RequestBody UserRequest userResponse, HttpServletRequest request) {
         Result login = null;
         HttpSession session = request.getSession();
         log.debug("userResponse:{}", userResponse);
-        if (userResponse.getCode() != null) {
+        if (!StrUtil.isEmpty(userResponse.getCode())) {
             Object code = session.getAttribute(userResponse.getPhone());
             if (userResponse.getCode().equalsIgnoreCase(code.toString())) {
                 login = userService.login(userResponse.getPhone(), null, true);
@@ -44,7 +47,7 @@ public class UserController {
 //            session.removeAttribute("code");
                 return login;
             }
-            return new Result().error(userResponse);
+            return new Result().error(userResponse,"验证码错误");
         }
         login = userService.login(userResponse.getPhone(), userResponse.getPassword(), false);
         if (login.getSuccess()) {
@@ -65,6 +68,8 @@ public class UserController {
     public Result me(HttpServletRequest request){
         HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
-        return new Result().ok(user);
+        UserResponse userResponse=new UserResponse();
+        BeanUtils.copyProperties(user,userResponse);
+        return new Result().ok(userResponse);
     }
 }

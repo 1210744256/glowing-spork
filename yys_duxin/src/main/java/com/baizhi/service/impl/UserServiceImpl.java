@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
                 user1.setPhone(phone);
                 user1.setPassword(RandomUtil.randomNumbers(8));
 //                user1.setIcon();
+                user1.setNickName(phone);
                 user1.setCreateTime(new Date());
                 user1.setUpdateTime(new Date());
                 userDao.insert(user1);
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
             return new Result().ok(user);
         }
         User user = userDao.queryByPhone(phone);
-        if(user==null||!user.getPassword().equals(password)) return new Result().error();
+        if(user==null||!user.getPassword().equals(password)) return new Result().error(null,"密码错误");
        return new Result().ok(user);
     }
 
