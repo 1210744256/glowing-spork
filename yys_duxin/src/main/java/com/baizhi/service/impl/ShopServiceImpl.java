@@ -30,9 +30,10 @@ public class ShopServiceImpl implements ShopService {
     public Result queryByType(ShopRequest shopRequest) {
         int startIndex=0;
         int size=2;
-//        if(ObjectUtil.isEmpty(shopRequest.getCurrent())){
-//
-//        }
+        if(!ObjectUtil.isEmpty(shopRequest.getCurrent())){
+            String current = shopRequest.getCurrent();
+            startIndex=Integer.parseInt(current);
+        }
         List<Shop> shops = shopDao.queryByType(shopRequest, startIndex, size);
         return new Result().ok(shops);
     }
@@ -40,5 +41,15 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public Result queryByName(String name) {
         return new Result().ok(shopDao.queryByName(name));
+    }
+
+    @Override
+    public Result queryByScoreLimit(int startIndex, int size) {
+        return new Result().ok(shopDao.queryByScoreLimit(startIndex,size));
+    }
+
+    @Override
+    public Result queryAllSlide() {
+        return new Result().ok(shopDao.queryAllSlide());
     }
 }

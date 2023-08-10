@@ -19,4 +19,11 @@
         from tb_user
         where phone = #{phone}
     </select>
+    <select id="queryByIds" resultType="com.baizhi.entity.User">
+        select id,nick_name  nickName,icon from tb_user where id in
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+
+    </select>
 </mapper>

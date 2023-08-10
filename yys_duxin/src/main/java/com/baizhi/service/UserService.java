@@ -9,4 +9,5 @@ public interface UserService {
     void insert(User user);
     void insertSign(Sign sign);
     Integer SignCount();
+
 }

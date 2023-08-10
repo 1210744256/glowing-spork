@@ -44,6 +44,7 @@ public class UserController {
         log.debug("userResponse:{}", userResponse);
         if (!StrUtil.isEmpty(userResponse.getCode())) {
             Object code = session.getAttribute(userResponse.getPhone());
+            if(code==null)return new Result().error(userResponse,"请您先获取验证码");
             if (userResponse.getCode().equalsIgnoreCase(code.toString())) {
                 login = userService.login(userResponse.getPhone(), null, true);
                 session.setAttribute("login", true);

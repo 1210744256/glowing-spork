@@ -10,5 +10,7 @@ import java.util.List;
 public interface ShopService {
     Result selectById(int id);
     Result queryByType(ShopRequest shopRequest);
-   Result queryByName(String name);
+    Result queryByName(String name);
+   Result queryByScoreLimit(int startIndex,int size);
+    Result queryAllSlide();
 }

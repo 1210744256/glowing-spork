@@ -1,8 +1,10 @@
 package com.baizhi.dao;
 
+import java.util.List;
+
 public interface BaseDao<T,V> {
     T selectById(V id);
-    T selectAll();
+    List<T> selectAll();
     void update(T t);
     void deleteById(V id);
     void insert(T t);

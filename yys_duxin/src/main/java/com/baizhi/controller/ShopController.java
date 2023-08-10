@@ -29,4 +29,13 @@ public class ShopController {
     public Result queryByName(String name){
         return shopService.queryByName(name);
     }
+    @GetMapping("/hot/top4")
+    public Result queryByScoreLimit(){
+        return shopService.queryByScoreLimit(0,4);
+    }
+//     Result queryAllSlide();
+    @GetMapping("/autoplay")
+    public  Result queryAllSlide(){
+        return shopService.queryAllSlide();
+    }
 }
