@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ShopDao">
+
+    <select id="selectById" parameterType="int" resultType="Shop">
+        <include refid="all"></include>from tb_shop where id=#{id}
+    </select>
+    <select id="queryByType" resultType="com.baizhi.entity.Shop" parameterType="com.baizhi.dto.ShopRequest">
+        select s.id,s.name,s.type_id typeId,s.images,s.area,s.address,s.x,s.y,
+        s.avg_price avgPrice,sold,
+        s.comments,s.score,s.open_hours openHours,s.create_time createTime,s.update_time updateTime from
+        (select * from tb_shop
+        <if test="shopRequest.current!=null and !shopRequest.current.isEmpty()">
+            limit #{startIndex},#{size}
+        </if>
+        ) s
+                    <where>
+                        <if test="shopRequest.typeId!=null ">
+                            s.type_id=#{shopRequest.typeId}
+                        </if>
+                        <if test="shopRequest.x!=null and !shopRequest.x.isEmpty() ">
+                           and s.x=#{shopRequest.x}
+                        </if>
+                        <if test="shopRequest.y!=null and !shopRequest.y.isEmpty()">
+                        and s.y=#{shopRequest.y}
+                        </if>
+                    </where>
+    </select>
+    <select id="queryByName" resultType="com.baizhi.entity.Shop" parameterType="String">
+        <include refid="all"></include> from tb_shop
+             <where>
+                 <if test="name!=null and !name.isEmpty()">
+                     name like concat('%',#{name},'%')
+                 </if>
+             </where>
+    </select>
+
+    <sql id="all">
+        select id,
+               name,
+               type_id     typeId,
+               images,
+               area,
+               address,
+               x,
+               y,
+               avg_price   avgPrice,
+               sold,
+               comments,
+               score,
+               open_hours  openHours,
+               create_time createTime,
+               update_time updateTime
+    </sql>
+</mapper>

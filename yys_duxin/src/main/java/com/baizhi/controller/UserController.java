@@ -2,10 +2,13 @@ package com.baizhi.controller;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baizhi.dao.SignDao;
 import com.baizhi.dao.UserDao;
 import com.baizhi.dto.Result;
 import com.baizhi.dto.UserRequest;
 import com.baizhi.dto.UserResponse;
+import com.baizhi.entity.Sign;
+import com.baizhi.entity.User;
 import com.baizhi.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
 
 @Slf4j
 @RestController
@@ -72,4 +76,23 @@ public class UserController {
         BeanUtils.copyProperties(user,userResponse);
         return new Result().ok(userResponse);
     }
+    @PostMapping("/sign")
+    public Result insertSign(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user =(User) session.getAttribute("user");
+        Calendar calendar=Calendar.getInstance();
+        Sign sign=new Sign();
+        sign.setUserId(user.getId());
+        sign.setYear(calendar.get(Calendar.YEAR));
+        sign.setMonth(calendar.get(Calendar.MONTH)+1);
+        sign.setDate(calendar.getTime());
+        userService.insertSign(sign);
+        return new Result().ok();
+    }
+    @GetMapping("/sign/count")
+    public Result querySignCount(){
+        Integer integer = userService.SignCount();
+        return new Result().ok(integer);
+    }
+
 }

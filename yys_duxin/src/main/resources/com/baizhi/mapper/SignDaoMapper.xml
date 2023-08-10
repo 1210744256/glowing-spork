@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.SignDao">
+
+    <select id="queryAllOfDate" resultType="com.baizhi.entity.Sign">
+        select id,user_id userId,year,month,date,is_backup isBackup from tb_sign
+        order by date desc
+    </select>
+<!--    void insert(T t);-->
+    <insert id="insert" parameterType="Sign">
+        insert into tb_sign(user_id,year,month,date,is_backup)
+        values (#{userId},#{year},#{month},#{date},#{isBackup})
+    </insert>
+</mapper>
