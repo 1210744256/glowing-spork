@@ -3,7 +3,7 @@
 <mapper namespace="com.baizhi.dao.SignDao">
 
     <select id="queryAllOfDate" resultType="com.baizhi.entity.Sign">
-        select id,user_id userId,year,month,date,is_backup isBackup from tb_sign
+        select id,user_id userId,year,month,date,is_backup isBackup from tb_sign group by date
         order by date desc
     </select>
 <!--    void insert(T t);-->

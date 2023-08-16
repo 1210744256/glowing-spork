@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.BlogDao">
+    <update id="updateByLiked">
+        update tb_blog
+        set liked=#{liked}
+        where id = #{id}
+    </update>
     <select id="queryByLimitForMe" resultType="com.baizhi.entity.Blog">
-        select id,shop_id shopId,user_id userId,title,images,content,liked,
-               comments,create_time createTime,update_time updateTime
-        from tb_blog where user_id=#{userId} limit #{startIndex},#{size}
+        select id,
+               shop_id     shopId,
+               user_id     userId,
+               title,
+               images,
+               content,
+               liked,
+               comments,
+               create_time createTime,
+               update_time updateTime
+        from tb_blog
+        where user_id = #{userId} limit #{startIndex}
+            , #{size}
     </select>
+    <select id="selectByLiked" resultType="java.lang.Integer">
+        select liked
+        from tb_blog
+        where id = #{id}
+    </select>
+    <select id="queryByLimitForHot" resultType="com.baizhi.entity.Blog">
+        select id,
+               shop_id     shopId,
+               user_id     userId,
+               title,
+               images,
+               content,
+               liked,
+               comments,
+               create_time createTime,
+               update_time updateTime
+        from tb_blog
+        order by liked desc limit #{startIndex}
+               , #{size}
+    </select>
+    <!--    T selectById(V id);-->
+    <select id="selectById" parameterType="int" resultType="Blog">
+        select id,
+               shop_id     shopId,
+               user_id     userId,
+               title,
+               images,
+               content,
+               liked,
+               comments,
+               create_time createTime,
+               update_time updateTime
+        from tb_blog
+        where id = #{id}
+    </select>
+    <select id="queryByLimitHot5OfUser" resultType="com.baizhi.entity.User">
+        select u.id, nick_name nickName, icon
+        from (select * from tb_liked where blog_id = #{blogId} group by user_id order by create_time) lk
+                 left join tb_user u on lk.user_id = u.id limit #{startIndex}, #{size}
+    </select>
+    <select id="queryAllBlogOfDistanct" resultType="com.baizhi.entity.Blog">
+        select id,
+        shop_id shopId,
+        user_id userId,
+        title,
+        images,
+        content,
+        liked,
+        comments,
+        create_time createTime,
+        update_time updateTime
+        from tb_blog where user_id in
+        <foreach collection="ids" open="(" close=")" item="id" separator=",">
+                         #{id}
+        </foreach>
+    </select>
+    <!--    void insert(T t);-->
+    <insert id="insert" parameterType="Blog">
+        insert into tb_blog(shop_id, user_id, title, images, content, liked,
+                            comments, create_time, update_time)
+        values (#{shopId}, #{userId}, #{title}, #{images}, #{content}, #{liked}, #{comments},
+                #{createTime}, #{updateTime})
+    </insert>
+    <insert id="insertLiked" parameterType="Liked">
+        insert into tb_liked(user_id, blog_id, liked, create_time, update_time)
+        values (#{userId}, #{blogId}, #{liked}, #{createTime}, #{updateTime})
+    </insert>
 </mapper>

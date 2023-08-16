@@ -10,35 +10,46 @@
         s.avg_price avgPrice,sold,
         s.comments,s.score,s.open_hours openHours,s.create_time createTime,s.update_time updateTime from
         (select * from tb_shop
-            limit #{startIndex},#{size}
         ) s
-                    <where>
-                        <if test="shopRequest.typeId!=null ">
-                            s.type_id=#{shopRequest.typeId}
-                        </if>
-                        <if test="shopRequest.x!=null and !shopRequest.x.isEmpty() ">
-                           and s.x=#{shopRequest.x}
-                        </if>
-                        <if test="shopRequest.y!=null and !shopRequest.y.isEmpty()">
-                        and s.y=#{shopRequest.y}
-                        </if>
-                    </where>
+        <where>
+            <if test="shopRequest.typeId!=null ">
+                s.type_id=#{shopRequest.typeId}
+            </if>
+            <if test="shopRequest.x!=null and !shopRequest.x.isEmpty() ">
+                and s.x=#{shopRequest.x}
+            </if>
+            <if test="shopRequest.y!=null and !shopRequest.y.isEmpty()">
+                and s.y=#{shopRequest.y}
+            </if>
+        </where>
+        limit #{startIndex},#{size}
     </select>
     <select id="queryByName" resultType="com.baizhi.entity.Shop" parameterType="String">
-        <include refid="all"></include> from tb_shop
-             <where>
-                 <if test="name!=null and !name.isEmpty()">
-                     name like concat('%',#{name},'%')
-                 </if>
-             </where>
+        <include refid="all"></include>
+        from tb_shop
+        <where>
+            <if test="name!=null and !name.isEmpty()">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
     </select>
     <select id="queryByScoreLimit" resultType="com.baizhi.entity.Shop">
-        <include refid="all"></include> from tb_shop order by score desc
-             limit #{startIndex},#{size}
+        <include refid="all"></include>
+        from tb_shop order by score desc
+        limit #{startIndex},#{size}
     </select>
     <select id="queryAllSlide" resultType="com.baizhi.entity.ShopSlide">
-        select id,alt,url,status,sort_order,shop_id,created,updated from tb_shop_slide_ad
-        where status=0 order by sort_order
+        select id,
+               alt,
+               url,
+               status,
+               sort_order,
+               shop_id,
+               created,
+               updated
+        from tb_shop_slide_ad
+        where status = 0
+        order by sort_order
     </select>
 
     <sql id="all">

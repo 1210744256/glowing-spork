@@ -10,46 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88a5ab74-6929-48da-861f-e6414c2a9b69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/FollowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/ShopTypeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/FollowDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/ShopTypeDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/entity/Follow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/entity/ShopSlide.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/entity/ShopType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/FollowService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/ShopTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/FollowServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/ShopTypeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/FollowDaoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/ShopTypeDaoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/UploadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/entity/Liked.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/BaseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/BaseDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/ShopDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/ShopDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/UserInFoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/UserInFoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/ShopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/ShopService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/ShopServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/ShopServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/BlogDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/dao/BlogDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/java/com/baizhi/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/BlogDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/BlogDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/ShopDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/ShopDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/UserDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/UserDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/mapper/UserDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/classes/com/baizhi/mapper/UserDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/mapper/UserDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/target/yys_duxin/WEB-INF/classes/com/baizhi/mapper/UserDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/SignDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yys_duxin/src/main/resources/com/baizhi/mapper/SignDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
@@ -110,7 +88,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "F:/untitled3",
+    "last_opened_file_path": "F:/untitled1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -118,7 +96,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.43908045",
-    "settings.editor.selected.configurable": "build.tools",
+    "settings.editor.selected.configurable": "editor.preferences.import",
     "spring.configuration.checksum": "6e5225dd6821b40d3946eb690ac51668"
   },
   "keyToStringList": {
@@ -132,10 +110,12 @@
       <recent name="com.baizhi.service.impl" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\untitled1\yys_duxin\target\yys_duxin\WEB-INF" />
       <recent name="F:\untitled1\yys_duxin\src\main\resources" />
       <recent name="F:\untitled1\yys_duxin\src\main\java\com\baizhi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\untitled1\yys_duxin\target\yys_duxin" />
       <recent name="F:\untitled1" />
     </key>
   </component>
@@ -281,7 +261,9 @@
       <workItem from="1691459403285" duration="2447000" />
       <workItem from="1691462492657" duration="15457000" />
       <workItem from="1691546450782" duration="16331000" />
-      <workItem from="1691627166439" duration="20937000" />
+      <workItem from="1691627166439" duration="23003000" />
+      <workItem from="1691716843529" duration="13905000" />
+      <workItem from="1691973035121" duration="10650000" />
     </task>
     <task id="LOCAL-00001" summary="yys环境">
       <created>1691461571821</created>
@@ -325,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691646467605</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="第二天的狱友社晚上版本">
+      <created>1691663979934</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691663979934</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,7 +347,8 @@
     <MESSAGE value="yys环境" />
     <MESSAGE value="第一天的狱友社" />
     <MESSAGE value="第二天的狱友社" />
-    <option name="LAST_COMMIT_MESSAGE" value="第二天的狱友社" />
+    <MESSAGE value="第二天的狱友社晚上版本" />
+    <option name="LAST_COMMIT_MESSAGE" value="第二天的狱友社晚上版本" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
